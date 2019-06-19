@@ -1,0 +1,19 @@
+// 项目的基础样式文件
+@import './common/reset.scss';
+html,
+body {
+    height: 100%;
+    font-size: px2rem(16);
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+body {
+    font-size: 16px;
+    width: 16rem;
+    margin: 0 auto;
+}
