@@ -31,11 +31,21 @@
 </template>
 
 <script>
+import  { tesyt } from '@/services/init.js'
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  }
+  },
+  mounted() {
+    this.testApi()
+  },
+  methods: {
+    async testApi() {
+      let res = await tesyt()
+      console.log(res)
+    }
+  },
 }
 </script>
 
