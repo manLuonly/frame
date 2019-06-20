@@ -4,8 +4,11 @@ import './router'
 import store from './store'
 
 
-import axios from 'axios';
-import VueAxios from 'vue-axios';
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
+
+import './ui/element-ui.js'
 
 Vue.use(VueAxios, axios);
 Vue.config.productionTip = false
