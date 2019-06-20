@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 // const home = r => require.ensure([], () => r(require('../page/home.vue')), 'home')
+const home =  () => import (/* webpackChunkName: "home" */ '../components/HelloWorld.vue');
 
 
 Vue.use(Router)
