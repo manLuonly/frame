@@ -9,7 +9,15 @@ module.exports = {
                 pathRewrite: {
                     '^/api': ''
                 }
-            }
+            },
+            "/ajax": {
+                "target": "http://m.maoyan.com",
+                "changeOrigin": true,
+                ws: true,
+                pathRewrite: {
+                    '^/api': ''
+                }
+            },
         }
     }
 }

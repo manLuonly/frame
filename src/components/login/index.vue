@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { AV } from "@/assets/js/nodeModule";
+// import { AV } from "@/assets/js/nodeModule";
 export default {
   name: "Login",
   data() {
@@ -114,7 +114,7 @@ export default {
     },
     async login() {
       try {
-        let res = await AV.User.logIn(this.form.userName, this.form.passWord);
+        // let res = await AV.User.logIn(this.form.userName, this.form.passWord);
         localStorage.setItem("uid", res.id); // 存供应商的id
         this.$message({
           message: "登录成功！",
@@ -151,10 +151,10 @@ export default {
           this.$message.error("用户名或密码为空，请填写完整!");
           return;
         } else {
-          await AV.User.resetPasswordBySmsCode(
-            this.form.code, // 验证码
-            this.form.newPassWord // 新密码
-          );
+          // await AV.User.resetPasswordBySmsCode(
+          //   this.form.code, // 验证码
+          //   this.form.newPassWord // 新密码
+          // );
           localStorage.removeItem("uid");
           this.$message.success("更改密码成功，返回登录页面！");
           this.isLog = true;
@@ -182,7 +182,7 @@ export default {
     async sendCode() {
       try {
         // 需要去验证mobilePhoneVerified字段是否为true，true代表手机号码已经验证过
-        await AV.User.requestPasswordResetBySmsCode(this.form.userName);
+        // await AV.User.requestPasswordResetBySmsCode(this.form.userName);
         this.isCodeBtn = true;
         this.codeText = 60 + "秒";
         console.log("验证码发送成功！");
@@ -226,7 +226,7 @@ export default {
     width: 100%;
     height: 100%;
     position: absolute;
-    background: url("../../assets/img/back.jpg") no-repeat;
+    // background: url("../../assets/img/back.jpg") no-repeat;
     background-size: 100%;
     z-index: -10;
   }
@@ -283,11 +283,11 @@ export default {
         border-right: 1px solid #dcdcdc;
       }
       .icon-user {
-        background: url("../../assets/img/user.png");
+        // background: url("../../assets/img/user.png");
         background-size: 24px;
       }
       .icon-password {
-        background: url("../../assets/img/pwd.png");
+        // background: url("../../assets/img/pwd.png");
         background-size: 24px;
       }
     }

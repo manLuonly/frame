@@ -22,25 +22,8 @@
     "element-ui": "^2.9.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "sass-loader": "^7.1.0",
     "vue-router": "^3.0.6",
     "vue-template-compiler": "^2.6.10"
-  },
-  "vue": {
-    "devServer": {
-      "proxy": {
-        "/ajax": {
-          "target": "http://m.maoyan.com",
-          "changeOrigin": true
-        },
-        "/dianying": {
-          "target": "http://m.maoyan.com",
-          "changeOrigin": true
-        },
-        "/searchlist": {
-          "target": "http://m.maoyan.com",
-          "changeOrigin": true
-        }
-      }
-    }
   }
 }
