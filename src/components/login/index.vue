@@ -7,20 +7,22 @@
         <h2>WELCOME</h2>
       </div>
       <form method="post">
-        <div class="login-input-box">
+        <div class="login-input-box inputBox">
           <span class="icon icon-user"></span>
-          <input type="text" placeholder="账号" v-model="form.userName">
+          <input type="text" placeholder="账号" v-model="loginFrom.userName" class="inputFocus">
+          <hr class="inputHr">
         </div>
-        <div class="login-input-box">
+        <div class="login-input-box inputBox">
           <span class="icon icon-password"></span>
-          <input type="password" placeholder="密码" v-model="form.passWord">
+          <input type="password" placeholder="密码" v-model="loginFrom.passWord" class="inputFocus">
+          <hr class="inputHr">
         </div>
       </form>
       <div class="login-button-box">
-        <button @click="login">登录</button>
+        <button @click="login" class="ripple">登录</button>
       </div>
       <div class="toForgetPassword">
-        <span class="forgetPassword" @click="changePass(false)">忘记密码？</span>
+        <span class="forgetPassword ripple" @click="changePass(false)">忘记密码？</span>
       </div>
     </div>
 
@@ -30,17 +32,20 @@
       </div>
       <el-form ref="form" label-width="100px" :rules="rules">
         <form method="post">
-          <div class="login-input-box">
+          <div class="login-input-box inputBox">
             <span class="icon icon-user"></span>
-            <input type="text" placeholder="请输入账号" v-model="form.userName">
+            <input type="text" placeholder="请输入账号" v-model="form.userName" class="inputFocus">
+            <hr class="inputHr">
           </div>
-          <div class="login-input-box">
+          <div class="login-input-box inputBox">
             <span class="icon icon-password"></span>
-            <input type="password" placeholder="请输入新密码" v-model="form.newPassWord">
+            <input type="password" placeholder="请输入新密码" v-model="form.newPassWord" class="inputFocus">
+            <hr class="inputHr">
           </div>
-          <div class="login-input-box">
+          <div class="login-input-box inputBox">
             <span class="icon icon-password"></span>
-            <input type="password" placeholder="请再输入一次" v-model="form.againNewPwd">
+            <input type="password" placeholder="请再输入一次" v-model="form.againNewPwd" class="inputFocus">
+            <hr class="inputHr">
           </div>
           <div class="login-input-box verificationCode">
             <span class="subTitle">验证码：</span>
@@ -56,17 +61,16 @@
         </form>
       </el-form>
       <div class="login-button-box">
-        <button @click="changePwd">确定</button>
+        <button @click="changePwd" class="ripple">确定</button>
       </div>
       <div class="back">
-        <span class="goBack" @click="changePass(true)">返回登录</span>
+        <span class="goBack ripple" @click="changePass(true)">返回登录</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-// import { AV } from "@/assets/js/nodeModule";
 export default {
   name: "Login",
   data() {
@@ -92,6 +96,12 @@ export default {
       }
     };
     return {
+      //登录
+      loginFrom: {
+        userName: "", // 用户名
+        passWord: "" // 密码
+      },
+      //修改密码
       form: {
         userName: "", // 用户名
         passWord: "", // 密码
@@ -111,35 +121,36 @@ export default {
   methods: {
     changePass(showLog) {
       this.isLog = showLog;
+      //清空数据
     },
     async login() {
-      try {
-        // let res = await AV.User.logIn(this.form.userName, this.form.passWord);
-        localStorage.setItem("uid", res.id); // 存供应商的id
+      // try {
+        // let res = await AV.User.logIn(this.loginFrom.userName, this.loginFrom.passWord);
+        // localStorage.setItem("uid", res.id); // 存供应商的id
         this.$message({
           message: "登录成功！",
           type: "success"
         });
-        this.$router.push({
-          path: "/Home/myRecharge"
-        });
-      } catch (err) {
-        console.log(err.code);
-        switch (err.code) {
-          case 210:
-            this.$message.error("密码错误，请确认密码!");
-            return;
-          case 211:
-            this.$message.error("用户名不存在!");
-            return;
-          case 219:
-            this.$message.error("登录失败次数过多!");
-            return;
-          default:
-            this.$message.error("未知错误，登陆失败!请重试");
-            return;
-        }
-      }
+        // this.$router.push({
+        //   path: "/Home/myRecharge"
+        // });
+      // } catch (err) {
+      //   console.log(err.code);
+      //   switch (err.code) {
+      //     case 210:
+      //       this.$message.error("密码错误，请确认密码!");
+      //       return;
+      //     case 211:
+      //       this.$message.error("用户名不存在!");
+      //       return;
+      //     case 219:
+      //       this.$message.error("登录失败次数过多!");
+      //       return;
+      //     default:
+      //       this.$message.error("未知错误，登陆失败!请重试");
+      //       return;
+      //   }
+      // }
     },
     async changePwd() {
       try {
@@ -155,7 +166,7 @@ export default {
           //   this.form.code, // 验证码
           //   this.form.newPassWord // 新密码
           // );
-          localStorage.removeItem("uid");
+          // localStorage.removeItem("uid");
           this.$message.success("更改密码成功，返回登录页面！");
           this.isLog = true;
         }
@@ -243,6 +254,9 @@ export default {
     right: 0;
     margin: auto;
     display: block;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
     .login-header {
       width: 100%;
       height: 48px;
@@ -261,18 +275,20 @@ export default {
       margin-right: auto;
       display: inline-block;
       input {
-        width: 340px;
+        box-sizing: border-box;
+        width: 100%;
         height: 32px;
-        margin-left: 18px;
+        // margin-left: 18px;
         border: 1px solid #dcdcdc;
         border-radius: 4px;
-        padding-left: 42px;
-        &:hover {
-          border: 1px solid rgb(47, 148, 244);
-        }
-        ::after {
-          border: 1px solid rgb(47, 148, 244);
-        }
+        padding-left: 50px;
+        outline: none;
+        // &:hover {
+        //   border: 1px solid rgb(47, 148, 244);
+        // }
+        // ::after {
+        //   border: 1px solid rgb(47, 148, 244);
+        // }
       }
       .icon {
         width: 24px;
@@ -302,9 +318,10 @@ export default {
         background-color: rgb(47, 148, 244);
         color: #ffffff;
         font-size: 16px;
-        width: 386px;
+        // width: 386px;
+        width: 100%;
         height: 40px;
-        margin-left: 18px;
+        // margin-left: 18px;
         border: 1px solid rgb(47, 148, 244);
         border-radius: 4px;
         cursor: pointer;
@@ -319,6 +336,7 @@ export default {
     }
   }
   .toForgetPwd {
+    box-sizing: content-box;
     height: 360px !important;
     .verificationCode {
       margin-left: 20px;

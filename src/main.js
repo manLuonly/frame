@@ -8,9 +8,9 @@ import store from './store'
 import commonComponents from '@/components'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-console.log(commonComponents)
 
 import './ui/element-ui.js'
+import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(VueAxios, axios);
 Vue.use(commonComponents);
