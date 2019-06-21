@@ -19,7 +19,7 @@
         </div>
       </form>
       <div class="login-button-box">
-        <button @click="login" class="ripple">登录</button>
+        <el-button type="primary" :loading="loginIsSuccess"  :disabled="loginIsSuccess" @click="login" class="ripple">登录</el-button>
       </div>
       <div class="toForgetPassword">
         <span class="forgetPassword ripple" @click="changePass(false)">忘记密码？</span>
@@ -61,7 +61,7 @@
         </form>
       </el-form>
       <div class="login-button-box">
-        <button @click="changePwd" class="ripple">确定</button>
+        <el-button type="primary" :loading="changeIsSuccess"  :disabled="changeIsSuccess" @click="changePwd" class="ripple">确定</el-button>
       </div>
       <div class="back">
         <span class="goBack ripple" @click="changePass(true)">返回登录</span>
@@ -71,6 +71,8 @@
 </template>
 
 <script>
+import { log } from 'util';
+
 export default {
   name: "Login",
   data() {
@@ -101,6 +103,8 @@ export default {
         userName: "", // 用户名
         passWord: "" // 密码
       },
+      //防止登录按钮未返回请求结果前多次点击 的控制data
+      loginIsSuccess:false,
       //修改密码
       form: {
         userName: "", // 用户名
@@ -109,6 +113,8 @@ export default {
         againNewPwd: "", // 再输一次
         code: "" // 输入的验证码
       },
+       //防止登录按钮未返回请求结果前多次点击 的控制data
+      changeIsSuccess:false,
       isLog: true, // 控制切换页面
       isCodeBtn: false, // 能否发送验证码的状态
       codeText: "发送验证码",
@@ -124,13 +130,20 @@ export default {
       //清空数据
     },
     async login() {
+      //模拟登陆 
+      this.loginIsSuccess = true
+
+      let fn =  ()=>new Promise((resolve, reject)=>{setTimeout(resolve,3000)})
+      await fn()
+      
+      this.loginIsSuccess = false
       // try {
         // let res = await AV.User.logIn(this.loginFrom.userName, this.loginFrom.passWord);
         // localStorage.setItem("uid", res.id); // 存供应商的id
-        this.$message({
-          message: "登录成功！",
-          type: "success"
-        });
+      this.$message({
+        message: "登录成功！",
+        type: "success"
+      });
         // this.$router.push({
         //   path: "/Home/myRecharge"
         // });
@@ -157,11 +170,19 @@ export default {
         if (
           this.form.userName == "" ||
           this.form.newPassWord == "" ||
-          this.form.againNewPwd == ""
+          this.form.againNewPwd == ""||
+          this.form.code == ""
         ) {
-          this.$message.error("用户名或密码为空，请填写完整!");
+          this.$message.error("用户名或密码或验证为空，请填写完整!");
           return;
         } else {
+          console.log(111);
+          
+           //模拟修改密码 
+          this.changeIsSuccess = true
+          let fn =  ()=>new Promise((resolve, reject)=>{setTimeout(resolve,3000)})
+          await fn()
+          this.changeIsSuccess = false
           // await AV.User.resetPasswordBySmsCode(
           //   this.form.code, // 验证码
           //   this.form.newPassWord // 新密码
