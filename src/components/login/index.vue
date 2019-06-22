@@ -7,16 +7,16 @@
         <h2>WELCOME</h2>
       </div>
       <el-form method="post">
-        <el-form-item class="login-input-box inputBox" @keyup.enter.native="login()">
+        <el-form-item class="login-input-box gb_inputBox" @keyup.enter.native="login()">
           <span class="icon icon-user"></span>
-          <input type="text" placeholder="账号" v-model="loginFrom.userName" class="inputFocus">
-          <hr class="inputHr">
+          <input type="text" placeholder="账号" v-model="loginFrom.userName" class="gb_inputFocus">
+          <hr class="gb_inputHr">
         </el-form-item>
 
-        <el-form-item class="login-input-box inputBox" @keyup.enter.native="login()">
+        <el-form-item class="login-input-box gb_inputBox" @keyup.enter.native="login()">
           <span class="icon icon-password"></span>
-          <input type="password" placeholder="密码" v-model="loginFrom.passWord" class="inputFocus">
-          <hr class="inputHr">
+          <input type="password" placeholder="密码" v-model="loginFrom.passWord" class="gb_inputFocus">
+          <hr class="gb_inputHr">
         </el-form-item>
 
         <el-form-item class="login-button-box">
