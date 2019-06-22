@@ -1,5 +1,8 @@
 // vue.config.js
 module.exports = {
+  // 将baseUrl: '/api', 改为baseUrl: '/',
+    baseUrl: '/', //开发环境
+    // baseUrl: '/dist', //线上环境
     devServer: {
         proxy: {
             // '/api': {

@@ -2,67 +2,66 @@
 <template>
   <div class="home_Login">
     <div class="backgound"></div>
-    <div class="login" v-if="isLog" key="login">
+    <div class="login" v-show="isLog" key="login">
       <div class="login-header">
         <h2>WELCOME</h2>
       </div>
-      <form method="post">
-        <div class="login-input-box inputBox">
+      <el-form method="post">
+        <el-form-item class="login-input-box inputBox" @keyup.enter.native="login()">
           <span class="icon icon-user"></span>
           <input type="text" placeholder="账号" v-model="loginFrom.userName" class="inputFocus">
           <hr class="inputHr">
-        </div>
-        <div class="login-input-box inputBox">
+        </el-form-item>
+
+        <el-form-item class="login-input-box inputBox" @keyup.enter.native="login()">
           <span class="icon icon-password"></span>
           <input type="password" placeholder="密码" v-model="loginFrom.passWord" class="inputFocus">
           <hr class="inputHr">
-        </div>
-      </form>
-      <div class="login-button-box">
-        <el-button type="primary" :loading="loginIsSuccess"  :disabled="loginIsSuccess" @click="login" class="ripple">登录</el-button>
-      </div>
+        </el-form-item>
+
+        <el-form-item class="login-button-box">
+          <el-button
+            type="primary"
+            :loading="loginIsSuccess"
+            :disabled="loginIsSuccess"
+            @click="login"
+            class="ripple"
+          >登录</el-button>
+        </el-form-item>
+      </el-form>
+
       <div class="toForgetPassword">
         <span class="forgetPassword ripple" @click="changePass(false)">忘记密码？</span>
       </div>
     </div>
 
-    <div class="login toForgetPwd" v-else key="change">
+    <!-- 忘记密码 -->
+    <div class="login toForgetPwd" v-show="!isLog" key="change">
       <div class="login-header">
         <h2>修改密码</h2>
       </div>
-      <el-form ref="form" label-width="100px" :rules="rules">
-        <form method="post">
-          <div class="login-input-box inputBox">
-            <span class="icon icon-user"></span>
-            <input type="text" placeholder="请输入账号" v-model="form.userName" class="inputFocus">
-            <hr class="inputHr">
-          </div>
-          <div class="login-input-box inputBox">
-            <span class="icon icon-password"></span>
-            <input type="password" placeholder="请输入新密码" v-model="form.newPassWord" class="inputFocus">
-            <hr class="inputHr">
-          </div>
-          <div class="login-input-box inputBox">
-            <span class="icon icon-password"></span>
-            <input type="password" placeholder="请再输入一次" v-model="form.againNewPwd" class="inputFocus">
-            <hr class="inputHr">
-          </div>
-          <div class="login-input-box verificationCode">
-            <span class="subTitle">验证码：</span>
-            <el-input type="text" style="width:50%;" v-model="form.code" clearable maxlength="6"></el-input>
-            <el-button
-              :disabled="isCodeBtn"
-              @click="sendCode"
-              size="small"
-              class="codeBtn"
-              plain
-            >{{codeText}}</el-button>
-          </div>
-        </form>
+      <el-form
+        :model="ruleForm"
+        status-icon
+        :rules="rules"
+        ref="ruleForm"
+        label-width="100px"
+        class="demo-ruleForm"
+      >
+        <el-form-item label="密码" prop="pass">
+          <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="确认密码" prop="checkPass">
+          <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="年龄" prop="age">
+          <el-input v-model.number="ruleForm.age"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+          <el-button @click="resetForm('ruleForm')">重置</el-button>
+        </el-form-item>
       </el-form>
-      <div class="login-button-box">
-        <el-button type="primary" :loading="changeIsSuccess"  :disabled="changeIsSuccess" @click="changePwd" class="ripple">确定</el-button>
-      </div>
       <div class="back">
         <span class="goBack ripple" @click="changePass(true)">返回登录</span>
       </div>
@@ -71,27 +70,23 @@
 </template>
 
 <script>
-import { log } from 'util';
-
 export default {
   name: "Login",
   data() {
     var validatePass = (rule, value, callback) => {
-      console.log(value);
-      if (!value) {
+      if (value === "") {
         callback(new Error("请输入密码"));
       } else {
-        if (this.form.againNewPwd !== "") {
-          this.$refs.form.validateField("againNewPwd");
+        if (this.ruleForm.checkPass !== "") {
+          this.$refs.ruleForm.validateField("checkPass");
         }
         callback();
       }
     };
     var validatePass2 = (rule, value, callback) => {
-      console.log(value);
-      if (!value) {
+      if (value === "") {
         callback(new Error("请再次输入密码"));
-      } else if (value !== this.form.newPassWord) {
+      } else if (value !== this.ruleForm.pass) {
         callback(new Error("两次输入密码不一致!"));
       } else {
         callback();
@@ -104,49 +99,55 @@ export default {
         passWord: "" // 密码
       },
       //防止登录按钮未返回请求结果前多次点击 的控制data
-      loginIsSuccess:false,
+      loginIsSuccess: false,
       //修改密码
-      form: {
-        userName: "", // 用户名
-        passWord: "", // 密码
-        newPassWord: "", // 新密码
-        againNewPwd: "", // 再输一次
-        code: "" // 输入的验证码
+      ruleForm: {
+        pass: "",
+        checkPass: "",
+        age: ""
       },
-       //防止登录按钮未返回请求结果前多次点击 的控制data
-      changeIsSuccess:false,
+      //防止登录按钮未返回请求结果前多次点击 的控制data
+      changeIsSuccess: false,
       isLog: true, // 控制切换页面
       isCodeBtn: false, // 能否发送验证码的状态
       codeText: "发送验证码",
       rules: {
-        newPassWord: [{ validator: validatePass, trigger: "blur" }],
-        againNewPwd: [{ validator: validatePass2, trigger: "blur" }]
+        pass: [{ validator: validatePass, trigger: "blur" }],
+        checkPass: [{ validator: validatePass2, trigger: "blur" }]
+        // age: [
+        //   { validator: checkAge, trigger: 'blur' }
+        // ]
       }
     };
   },
+  created() {},
+
   methods: {
     changePass(showLog) {
       this.isLog = showLog;
       //清空数据
     },
     async login() {
-      //模拟登陆 
-      this.loginIsSuccess = true
+      //模拟登陆
+      this.loginIsSuccess = true;
 
-      let fn =  ()=>new Promise((resolve, reject)=>{setTimeout(resolve,3000)})
-      await fn()
-      
-      this.loginIsSuccess = false
+      let fn = () =>
+        new Promise(resolve => {
+          setTimeout(resolve, 3000);
+        });
+      await fn();
+
+      this.loginIsSuccess = false;
       // try {
-        // let res = await AV.User.logIn(this.loginFrom.userName, this.loginFrom.passWord);
-        // localStorage.setItem("uid", res.id); // 存供应商的id
+      // let res = await AV.User.logIn(this.loginFrom.userName, this.loginFrom.passWord);
+      // localStorage.setItem("uid", res.id); // 存供应商的id
       this.$message({
         message: "登录成功！",
         type: "success"
       });
-        // this.$router.push({
-        //   path: "/Home/myRecharge"
-        // });
+      // this.$router.push({
+      //   path: "/Home/myRecharge"
+      // });
       // } catch (err) {
       //   console.log(err.code);
       //   switch (err.code) {
@@ -170,19 +171,22 @@ export default {
         if (
           this.form.userName == "" ||
           this.form.newPassWord == "" ||
-          this.form.againNewPwd == ""||
+          this.form.againNewPwd == "" ||
           this.form.code == ""
         ) {
           this.$message.error("用户名或密码或验证为空，请填写完整!");
           return;
         } else {
           console.log(111);
-          
-           //模拟修改密码 
-          this.changeIsSuccess = true
-          let fn =  ()=>new Promise((resolve, reject)=>{setTimeout(resolve,3000)})
-          await fn()
-          this.changeIsSuccess = false
+
+          //模拟修改密码
+          this.changeIsSuccess = true;
+          let fn = () =>
+            new Promise(resolve => {
+              setTimeout(resolve, 3000);
+            });
+          await fn();
+          this.changeIsSuccess = false;
           // await AV.User.resetPasswordBySmsCode(
           //   this.form.code, // 验证码
           //   this.form.newPassWord // 新密码

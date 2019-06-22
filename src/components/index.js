@@ -7,7 +7,7 @@ import login from './login'
 
 export default {
     install(Vue) {
-        Vue.component(login.name, login)
+        Vue.component('login', login)
       
 
     }

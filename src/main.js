@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import './router'
 import store from './store'
+require('./public')
 /**
  * 挂载公共组件
  */
