@@ -1,11 +1,10 @@
-
 /**
  * axios  options
  */
 
 import axios from 'axios'
 import API from '../api'
-import router from '@/router'
+// import router from '@/router'
 
 // window.Promise = Promise
 
@@ -63,25 +62,21 @@ import router from '@/router'
 // 配置除 url， 数据， 请求方式 的其他参数
 // export default axios;
 
-export default function http({url, data, method}) {
+export default function http({ url, data, method }) {
     let options = {
-        url:url,
-        method:method,
-        baseURL:API.SAT_HOST,
-        timeout:100000,
-        withCredentials:false
+        url: url,
+        method: method,
+        baseURL: API.SAT_HOST,
+        timeout: 100000,
+        withCredentials: false
     }
 
-    if(method == 'GET') {
+    if (method == 'GET') {
         options.params = data
     }
-    if(method == 'POST') {
+    if (method == 'POST') {
         options.data = data
     }
 
     return axios(options)
 }
-
-
-
-
