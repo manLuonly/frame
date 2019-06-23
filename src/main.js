@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router';
+import router from './router'
 import store from './store'
-require('./public')
-    /**
-     * 挂载公共组件
-     */
+import ('./public')
+/**
+ * 挂载公共组件
+ */
 import commonComponents from '@/components'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
