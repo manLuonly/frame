@@ -5,7 +5,7 @@ export  function tesyt() {
 
     return new Promise ((resolve, reject)=>{
          http({
-             url:API.API_movieOnInfoList,
+             url:API.API_LOGIN,
              method:'GET',
          })
          // 请求到了数据，对数据进行处理

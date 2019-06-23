@@ -5,17 +5,10 @@
 </template>
 
 <script>
+import {tesyt} from '@/services/init.js'
 export default {
     created() {
-        Message({
-          showClose: true,
-          message: '这是一条消息提示'
-        });
-        // PB.message(this, true, 'test')
-        // Message({
-        //   showClose: true,
-        //   message: '这是一条消息提示'
-        // })
+       tesyt()
     }
 }
 </script>

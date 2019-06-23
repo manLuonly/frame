@@ -66,8 +66,8 @@ export default function http({ url, data, method }) {
     let options = {
         url: url,
         method: method,
-        baseURL: API.SAT_HOST,
-        timeout: 100000,
+        // baseURL: API.SAT_HOST,
+        timeout: 2000,
         withCredentials: false
     }
 

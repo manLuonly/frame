@@ -13,8 +13,8 @@ module.exports = {
             //         '^/api': ''
             //     }
             // },
-            "/ajax": {
-                "target": "http://m.maoyan.com",
+            "/api": {
+                "target": "http://39.108.70.180",
                 "changeOrigin": true,
                 ws: true,
                 pathRewrite: {
@@ -35,3 +35,6 @@ module.exports = {
         }
       }
 }
+
+// .env.development
+VUE_APP_BASE_API='/api'

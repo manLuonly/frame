@@ -14,15 +14,13 @@ const ISHOST = false;
 //线上坏境
 const HOST_API = ISHOST ? '/' : '/api/';
 
-const API_movieOnInfoList = HOST_API + ''
+const API_LOGIN = HOST_API + 'login'
 
 
 
 
 export default {
-    PRO_HOST,
-
-    API_movieOnInfoList
+    API_LOGIN
 }
 
 
