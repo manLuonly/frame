@@ -1,7 +1,7 @@
 // input foucs 后显示下划线
-.inputBox {
+.gb_inputBox {
     position: relative;
-    .inputHr {
+    .gb_inputHr {
          margin: 0;
          height: 2px;
          border: none;
@@ -15,18 +15,18 @@
          transition: -webkit-transform .45s cubic-bezier(.23,1,.32,1);
          background-color: #2878ff;
      }
-     .inputFocus:focus+hr {
+     .gb_inputFocus:focus+hr {
         transform: scaleX(1);
     }
  }
 
   /* hover效果 */
-   .ripple {
+   .gb_ripple {
     position: relative;
     overflow: hidden;
   }
   
-  .ripple:after {
+  .gb_ripple:after {
     content: "";
     display: block;
     position: absolute;
@@ -43,7 +43,7 @@
     transition: transform .3s, opacity .4s;
   }
   
-  .ripple:active:after {
+  .gb_ripple:active:after {
     transform: scale(0, 0);
     opacity: .6;
     transition: 0s;
