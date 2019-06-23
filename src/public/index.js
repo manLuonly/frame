@@ -1,26 +1,20 @@
 module.exports = (() => {
+    /**
+     * 简化 console.log() -> log()
+     */
     // let log=console.log.bind(console)
     // window.PB = {
 
     //     /**
-    //      * @method keyUpEnter 键盘回车事件
-    //      * @param cb  回调
+    //      * @method message 弹出消息
+    //      * @param  this Vue实例  showClose 可以添加关闭按钮 message 消息文字
     //      * @return  null
     //      */
-    //     keyUpEnter(el, cb) {
-    //         log(el)
-    //         el.focus()
-    //         if( typeof cb !== 'function' && el)  return null;
-                
-    
-    //         let keyUpFn = function (e) {
-    //             if(e && e.keyCode==13){ 
-    //                 debugger
-    //                 cb()
-    //             }
-    //         }
-    //         el.removeEventListener('keydown', keyUpFn, false)
-    //         el.addEventListener('keydown', keyUpFn, false)
-    //    }
+    //     message(that, showClose, message) {
+    //         that.$message({
+    //             showClose,
+    //             message
+    //         })
+    //     }
     // }
 })();

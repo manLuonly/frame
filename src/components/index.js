@@ -8,7 +8,6 @@ import login from './login'
 export default {
     install(Vue) {
         Vue.component('login', login)
-      
 
     }
 }
