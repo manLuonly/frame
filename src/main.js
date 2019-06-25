@@ -13,6 +13,7 @@ import VueAxios from 'vue-axios'
 import './ui/element-ui'
 
 import 'element-ui/lib/theme-chalk/index.css';
+import 'animate.css';
 
 Vue.use(VueAxios, axios);
 Vue.use(commonComponents);

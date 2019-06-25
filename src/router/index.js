@@ -1,49 +1,35 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-const home = () =>
-    import ( /* webpackChunkName: "home" */ '@/page/home/home.vue');
-const login = () =>
-    import ( /* webpackChunkName: "login" */ '@/components/login');
+const Home = () =>
+    import( /* webpackChunkName: "home" */ '@/pages/home/home.vue');
+const Login = () =>
+    import( /* webpackChunkName: "login" */ '@/components/login/login.vue');
+
 
 
 Vue.use(Router)
 
-// const router = new Router({
-//     routes: [{
-//             path: '/home',
-//             meta: {
-//                 requireAuth: true,
-//             },
-//             component: home
-//         },
-//         {
-//             path: '/login',
-//             component: login
-//         },
-//         {
-//             path: '*',
-//             redirect: '/home'
-//         }
-//     ]
-// })
 
 const router = new Router({
     routes: [
 
         {
-            path: '/Home',
-            component: home
+            path: '/home',
+            component: Home
         },
         {
             path: '/login',
-            component: login
+            component: Login
         },
         {
             path: '*',
-            redirect: '/Home'
+            redirect: '/home'
         }
     ]
 })
 
+// router.beforeEach((to, from, next) => {
+    
+// })
 export default router;

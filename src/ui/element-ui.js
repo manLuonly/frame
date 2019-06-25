@@ -6,4 +6,4 @@ Vue.use(Input);
 // Vue.use(Message);
 Vue.use(Form);
 Vue.use(FormItem);
-Vue.component(Message.name, Message)
+Vue.prototype.$message = Message;

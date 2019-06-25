@@ -2,7 +2,9 @@ module.exports = (() => {
     /**
      * 简化 console.log() -> log()
      */
-    // let log=console.log.bind(console)
+    window.log = console.log.bind(console)
+
+
     // window.PB = {
 
     //     /**
