@@ -1,6 +1,7 @@
 $blue: #3190e8;
 $bc: #e4e4e4;
 $fc:#fff;
+
 // 背景图片地址和大小
 @mixin bis($url) {
     background-image: url($url);
@@ -45,7 +46,7 @@ $fc:#fff;
     transform: translateX(-50%);
 }
 
-//宽高
+//盒子宽高
 @mixin wh($width, $height) {
     width: $width;
     height: $height;
@@ -67,4 +68,19 @@ $fc:#fff;
     display: flex;
     justify-content: $type;
 }
+
+
+// 文本溢出省略号显示 (多行 $n为行数)
+// 只支持 webkit 浏览器, 
+@mixin ellipsisMult($n: 3) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $n;
+    word-break: break-all;
+    -o-text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
 
