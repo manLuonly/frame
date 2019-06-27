@@ -29,7 +29,7 @@ module.exports = {
      * 毕竟打包后的代码都是压缩的，调试起来很不方便。测试没问题，正式上线时，我们完全可以去掉这个文件
      * @value  为false打包时不生成 .map文件减少打包大小
      */
-    productionSourceMap:process.env.NODE_ENV === 'development'?  true : false,
+    productionSourceMap: false,
     configureWebpack: config => {
       const myConfig = {}
       if (process.env.NODE_ENV === 'production') {
@@ -40,7 +40,8 @@ module.exports = {
           new CompressionWebpackPlugin({
             test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
             threshold: 8192,
-            minRatio: 0.8
+            minRatio: 0.8,
+            deleteOriginalAssets: false //不删除源文件
           })
         )
       }
