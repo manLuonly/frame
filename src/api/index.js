@@ -9,10 +9,10 @@
 // 生产环境 (PRO) 上线后
 // const PRO_HOST = '';
 
+
 //开发环境
-const ISHOST = false;
 //线上坏境
-const HOST_API = ISHOST ? '/' : '/api/';
+const HOST_API =  process.env.NODE_ENV === 'production' ? '/' : '/api/';
 
 const API_LOGIN = HOST_API + 'login'
 
