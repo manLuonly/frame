@@ -1,3 +1,16 @@
+import fetch from './fetch'
+
+/**
+ * 登陆
+ */
+
+export const login = data => fetch('/admin/login', data, 'POST');
+
+/**
+ * 退出
+ */
+
+export const signout = () => fetch('/admin/signout');
 // // 定host
 
 // 开发环境（SAT）
@@ -12,7 +25,7 @@
 
 //开发环境
 //线上坏境
-const HOST_API =  process.env.NODE_ENV === 'production' ? '/' : '/api/';
+const HOST_API = process.env.NODE_ENV === 'production' ? '/' : '/api/';
 
 const API_LOGIN = HOST_API + 'login'
 
@@ -22,5 +35,3 @@ const API_LOGIN = HOST_API + 'login'
 export default {
     API_LOGIN
 }
-
-

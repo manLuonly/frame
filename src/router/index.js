@@ -2,9 +2,9 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 const Home = () =>
-    import( /* webpackChunkName: "home" */ '@/pages/home/home.vue');
+    import ( /* webpackChunkName: "home" */ '@/pages/home/home.vue');
 const Login = () =>
-    import( /* webpackChunkName: "login" */ '@/components/login/login.vue');
+    import ( /* webpackChunkName: "login" */ '@/components/login/login.vue');
 
 
 
@@ -12,6 +12,8 @@ Vue.use(Router)
 
 
 const router = new Router({
+    base: '/',
+    mode: 'history',
     routes: [
 
         {
@@ -19,7 +21,7 @@ const router = new Router({
             component: Home
         },
         {
-            path: '/login',
+            path: '/loginpage',
             component: Login
         },
         {
@@ -30,6 +32,6 @@ const router = new Router({
 })
 
 // router.beforeEach((to, from, next) => {
-    
+
 // })
 export default router;

@@ -27,7 +27,7 @@
               type="primary"
               :loading="loginIsSuccess"
               :disabled="loginIsSuccess"
-              @click="login"
+              @click="login;test()"
               class="ripple"
             >登录</el-button>
           </el-form-item>
@@ -102,7 +102,7 @@ export default {
     };
   },
   created() {},
-
+  
   methods: {
     // 切换  显示组件
     changePass() {
@@ -236,6 +236,10 @@ export default {
           this.codeText = parseInt(this.codeText) - 1 + "秒";
         }
       }, 1000);
+    },
+    async test() {
+      const res = await fetch('/login',{}).then( res )
+      console.log(res)
     }
   }
 };
