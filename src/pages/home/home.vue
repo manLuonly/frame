@@ -1,28 +1,40 @@
 <template>
-    <div class="home">
-       首页
-        <a-button type="primary">Primary</a-button>
-      <a-button>Default</a-button>
-      <a-button type="dashed">Dashed</a-button>
-      <a-button type="danger">Danger</a-button>
-    </div>
+  <div class="home">
+    <a-button type="primary">首页</a-button>
+    <a-button type="dashed" @click="goNotFoundPageAction">404页面</a-button>
+  </div>
 </template>
 
 <script>
-import {tesyt} from '@/services/init.js'
+import { login } from "@/api";
+
 export default {
-    created() {
-       tesyt()
+  async created() {
+    let loginResponse = await login({});
+    console.log(loginResponse);
+    /**
+     * md5试例
+     */
+    const usename = _md5("lijiacheng");
+    const pwd = _md5("123456");
+    console.log(usename, pwd);
+  },
+  methods: {
+    goNotFoundPageAction() {
+      this.$router.push({
+        path: "/404"
+      });
     }
-}
+  }
+};
 </script>
 
 <style lang="scss" scoped>
- .home {
-      width: 100%;
-      height: 100%;
-      background: url('../../../static/images/123.jpg');
-      background-size: cover;
- }
+.home {
+  width: 100%;
+  height: 100%;
+  background: url("../../../static/images/123.jpg");
+  background-size: cover;
+}
 </style>
 

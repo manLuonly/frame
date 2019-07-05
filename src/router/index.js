@@ -5,7 +5,9 @@ const Home = () =>
     import ( /* webpackChunkName: "home" */ '@/pages/home/home.vue');
 const Login = () =>
     import ( /* webpackChunkName: "login" */ '@/components/login/login.vue');
-
+const notFound = () =>
+    import ( /* webpackChunkName: "notFound" */ '@/pages/notFound.vue');
+ 
 
 
 Vue.use(Router)
@@ -25,7 +27,12 @@ const router = new Router({
             component: Login
         },
         {
-            path: '*',
+            name: '404',
+            path: '/404',
+            component: notFound
+        },
+        {
+            path: '*',    
             redirect: '/home'
         }
     ]

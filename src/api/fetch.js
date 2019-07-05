@@ -1,4 +1,9 @@
 import { baseUrl } from './env'
+/**
+ * 引入 antd-vue的提示方法
+ */
+import Message from '@/ui/antd-vue-ui'
+
 
 export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
     type = type.toUpperCase();
@@ -37,9 +42,22 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 
         try {
             const response = await fetch(url, requestConfig);
-            const responseJson = await response.json();
+            const responseJson = await response.text();
+            /**
+             * 这里为 response.json()会报错 不知道是什么情况
+             */
+            // const responseJson = await response.json();
+            
+            /**
+             * status 不是200 提示错误信息
+             */
+            if(response.status != 200 ) {
+                Message.error(responseJson)
+            }
+
             return responseJson
         } catch (error) {
+            Message.error(error)
             throw new Error(error)
         }
     } else { // 对于不支持fetch的浏览器，便自动使用 ajax + promise

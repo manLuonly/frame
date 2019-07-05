@@ -11,10 +11,10 @@ let routerMode = 'hash';
 let baseImgPath;
 
 if (process.env.NODE_ENV == 'development') {
-    baseUrl = '';
+    baseUrl = '/api/';
     baseImgPath = '/img/';
 } else {
-    baseUrl = '//elm.cangdu.org'; // 线上地址
+    baseUrl = '/'; // 线上地址
     baseImgPath = '//elm.cangdu.org/img/';
 }
 
