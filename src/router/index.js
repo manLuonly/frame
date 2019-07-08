@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-
+/* webpackChunkName: "home" */
 const Home = () =>
-    import ( /* webpackChunkName: "home" */ '@/pages/home/home.vue');
+    import ( '@/pages/home/home.vue');
 const Login = () =>
-    import ( /* webpackChunkName: "login" */ '@/components/login/login.vue');
+    import (  '@/components/login/login.vue');
 const notFound = () =>
-    import ( /* webpackChunkName: "notFound" */ '@/pages/notFound.vue');
+    import (  '@/pages/notFound.vue');
  
 
 

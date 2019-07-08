@@ -1,7 +1,7 @@
 let md5 = require ('js-md5')
 module.exports = (() => {
     /**
-     * 简化 将md5方法挂在window上
+     *  将md5方法挂在window上
      */
     window._md5 = md5
 
