@@ -42,16 +42,16 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 
         try {
             const response = await fetch(url, requestConfig);
-            // const responseJson = await response.text();
+            const responseJson = await response.text();
             /**
              * 这里为 response.json()会报错 不知道是什么情况
              */
-            const responseJson = await response.json();
-            
+            // const responseJson = await response.json();
+
             /**
              * status 不是200 提示错误信息
              */
-            if(response.status != 200 ) {
+            if (response.status != 200) {
                 Message.error(responseJson)
             }
 
