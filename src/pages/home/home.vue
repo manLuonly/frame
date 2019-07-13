@@ -1,14 +1,21 @@
 <template>
   <div class="home">
     <a-button type="primary">首页</a-button>
-    <a-button type="dashed" @click="goNotFoundPageAction">404页面</a-button>
+    <a-button type="dashed" @click="$router.push({ path: '/404' })">404页面</a-button>
+
+  <div>{{msg}}</div>
   </div>
 </template>
 
 <script>
-import { login } from "@/api";
+import { login } from './service.js';
+import data from './store.js';
+import methods from './action.js';
 
 export default {
+  data() {
+    return data
+  },
   async created() {
     let loginResponse = await login({});
     console.log(loginResponse);
@@ -19,13 +26,7 @@ export default {
     const pwd = _md5("123456");
     console.log(usename, pwd);
   },
-  methods: {
-    goNotFoundPageAction() {
-      this.$router.push({
-        path: "/404"
-      });
-    }
-  }
+  methods,
 };
 </script>
 

@@ -1,16 +1,15 @@
-import fetch from './fetch'
 
 /**
  * 登陆
  */
 
-export const login = data => fetch('login', data, 'GET');
+// export const login = data => fetch('login', data, 'GET');
 
 /**
  * 退出
  */
 
-const signout = () => fetch('/admin/signout');
+// const signout = () => fetch('/admin/signout');
 // // 定host
 
 // 开发环境（SAT）
