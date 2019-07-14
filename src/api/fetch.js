@@ -6,6 +6,7 @@ import Message from '@/ui/antd-vue-ui'
 
 
 export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
+
     type = type.toUpperCase();
     url = baseUrl + url;
     // 规定get请求的参数使用时放在data中，如同post请求
@@ -27,7 +28,7 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
             credentials: 'include',
             method: type,
             headers: {
-                // 'Accept': 'application/json',
+                // 'Accept': 'application/json',   
                 'Content-Type': 'application/json'
             },
             mode: "cors", // 以CORS的形式跨域
@@ -42,7 +43,6 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 
         try {
             const response = await fetch(url, requestConfig);
-            // const responseJson = await response.text();
             /**
              * 这里为 response.json()会报错 不知道是什么情况
              */
@@ -57,7 +57,6 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 
             return responseJson
         } catch (error) {
-            console.log(error)
             Message.error(error)
             throw new Error(error)
         }
@@ -67,7 +66,7 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
             if (window.XMLHttpRequest) {
                 requestObj = new XMLHttpRequest();
             } else {
-                requestObj = new ActiveXObject; // 兼容IE
+                requestObj = new ActiveXObject; // 兼容IEtets
             }
 
             let sendData = '';
