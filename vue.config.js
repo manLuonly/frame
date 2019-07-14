@@ -79,8 +79,6 @@ module.exports = {
                 ws: true,
                 pathRewrite: {
                     '^/api': ''
-
-                    
                 }
             },
         }

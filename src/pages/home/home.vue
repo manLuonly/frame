@@ -1,7 +1,9 @@
+<!--首页 -->
 <template>
   <div class="home">
     <a-button type="primary">首页</a-button>
     <a-button type="dashed" @click="$router.push({ path: '/404' })">404页面</a-button>
+    <a-button type="dashed" @click="$router.push({ path: '/login' })">login页面</a-button>
 
     <div>{{msg}}</div>
   </div>
@@ -17,13 +19,6 @@ export default {
     return data;
   },
   async created() {
-    let loginResponse = await login(
-      JSON.stringify({
-        user: "admin",
-        psd: "123456"
-      })
-    );
-    console.log(loginResponse);
     /**
      * md5试例
      */
