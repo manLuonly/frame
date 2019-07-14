@@ -4,7 +4,7 @@ import Router from 'vue-router';
 const Home = () =>
     import ( /* webpackChunkName: "page" */'@/pages/home/home.vue');
 const Login = () =>
-    import (  /* webpackChunkName: "page" */'@/components/login/login.vue');
+    import (  /* webpackChunkName: "page" */'@/pages/login/login.vue');
 const notFound = () =>
     import ( /* webpackChunkName: "page" */ '@/pages/notFound.vue');
 
@@ -22,7 +22,7 @@ const router = new Router({
             component: Home
         },
         {
-            path: '/loginpage',
+            path: '/login',
             component: Login
         },
         {

@@ -3,7 +3,7 @@ import fetch from '@/api/fetch.js'
 /**
  * 全局方法
  */
-let publicFn = () => {
+let publicFn = (Vue) => {
     /**
      * 将md5加密方法挂在window上
      * @param 
@@ -19,25 +19,27 @@ let publicFn = () => {
      * @return promise
      */
     window._fetch = fetch
+
+     /**
+     * 将消息提示 方法挂在window上
+     * @param   一个String
+     * @example  _message.success  _message.error  _message.warning
+     * @return 
+     */
+    window._message = ()=>{
+      let message  = Vue.prototype.$message
+
+      return  message
+    }
 }
 
 /**
  * 存放公共组件位置
  */
-/**
- * 登录页的登录组件
- */
-import login from './login/login'
-/**
- * 登录页的忘记密码组件
- */
-import forgetPassword from './forget-password/forget-password'
 
 
 export default {
     install(Vue) {
-        Vue.component('login', login)
-        Vue.component('forget-password', forgetPassword)
-        publicFn()
+        publicFn(Vue)
     },
 }

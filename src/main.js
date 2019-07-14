@@ -1,13 +1,13 @@
 import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-
 /**
  * 挂载公共组件 及全局方法
  */
 import commonComponents from '@/components'
 Vue.use(commonComponents);
+import App from './App.vue'
+import router from './router'
+import store from './store'
+
 
 import './ui/antd-vue-ui'
 import axios from 'axios'
