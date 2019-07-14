@@ -5,4 +5,7 @@
 /**
  * 登陆
  */
-export const login = data => _fetch('login', data, 'POST');
+export const login = data => {
+    data.psd = _md5(data.psd)
+    return _fetch('login', data, 'POST');
+}

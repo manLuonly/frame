@@ -1,16 +1,19 @@
+// eslint-disable-next-line
 import Vue from 'vue';
 import Router from 'vue-router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
-import { log } from 'util';
-/* webpackChunkName: "page" */
-const Home = () =>
-    import ( /* webpackChunkName: "page" */ '@/pages/home/home.vue');
-const Login = () =>
-    import (  /* webpackChunkName: "page" */'@/pages/login/login.vue');
-const notFound = () =>
-    import ( /* webpackChunkName: "page" */ '@/pages/notFound.vue');
 
+const Home = () =>
+    import( /* webpackChunkName: "page" */ '@/pages/home/home.vue');
+const Login = () =>
+    import( /* webpackChunkName: "page" */ '@/pages/login/login.vue');
+const NotFound = () =>
+    import( /* webpackChunkName: "page" */ '@/pages/notFound.vue');
+const UserLayout = () =>
+    import( /* webpackChunkName: "page" */ '@/components/userLayout');
+const Waiting = () =>
+    import( /* webpackChunkName: "page" */ '@/pages/waiting.vue');
 
 Vue.use(Router)
 
@@ -19,38 +22,42 @@ const router = new Router({
     base: '/',
     mode: 'hash',
     routes: [
-
+        {
+            path: '/',
+            redirect:'/home',
+        },
         {
             path: '/home',
             component: Home
         },
         {
             path: '/login',
+            name: 'login',
             component: Login
         },
         {
             name: '404',
             path: '/404',
-            component: notFound
+            component: NotFound
         },
         {
             path: '*',
-            redirect: '/home'
+            redirect: '/404'
         }
     ]
 })
 
 router.beforeEach((to, from, next) => {
     NProgress.start();
-    if(to.path == '/404' && from.path == "/login") {
+    if (to.path == '/wait' && from.path == "/login") {
+        // next();
+        // setTimeout(() => {
+        //     next({
+        //         path: '/home'
+        //     });
+        // }, 3000)
+    } else {
         next();
-        setTimeout(() => {
-            next({
-                path:'/home'
-            });
-        }, 3000)
-    }else {
-       next();
     }
 })
 

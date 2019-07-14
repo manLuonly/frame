@@ -48,3 +48,10 @@
     opacity: .6;
     transition: 0s;
   }
+
+  // 设置img 为100%显示
+  .img-fit-100 {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
