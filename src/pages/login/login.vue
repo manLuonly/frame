@@ -94,9 +94,12 @@ export default {
         async (err) => {
           if (!err) {
             let loginResponse = await login(this.formData);
-            setTimeout(()=>{
-              this.buttonIsLoading = false
-            },2000)
+            if (loginResponse.status === 0) {
+              this.$router.replace({path: '/404'})
+            }else {
+              _message().success('别登陆，来打游戏')
+            }
+            this.buttonIsLoading = false
           }
         },
       );

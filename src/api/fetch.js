@@ -6,11 +6,6 @@ import Message from '@/ui/antd-vue-ui'
 
 
 export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> dc655837572a68cc72d758d2797955beb8614277
     type = type.toUpperCase();
     url = baseUrl + url;
     // 规定get请求的参数使用时放在data中，如同post请求
