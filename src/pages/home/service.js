@@ -5,4 +5,4 @@
 /**
  * 登陆
  */
-export const login = data => _fetch('login', data, 'GET');
+export const login = data => _fetch('login', data, 'POST');

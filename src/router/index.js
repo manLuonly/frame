@@ -1,10 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 /* webpackChunkName: "page" */
 const Home = () =>
-    import ( /* webpackChunkName: "page" */'@/pages/home/home.vue');
+    import ( /* webpackChunkName: "page" */ '@/pages/home/home.vue');
 const Login = () =>
-    import (  /* webpackChunkName: "page" */'@/components/login/login.vue');
+    import ( /* webpackChunkName: "page" */ '@/components/login/login.vue');
 const notFound = () =>
     import ( /* webpackChunkName: "page" */ '@/pages/notFound.vue');
 
@@ -31,13 +33,19 @@ const router = new Router({
             component: notFound
         },
         {
-            path: '*',    
+            path: '*',
             redirect: '/home'
         }
     ]
 })
 
-// router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
+    NProgress.start();
+    next();
+})
 
-// })
+router.afterEach((to, from) => {
+    // 做一些额外处理，比如进度条的效果
+    NProgress.done();
+})
 export default router;

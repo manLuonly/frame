@@ -27,7 +27,7 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
             credentials: 'include',
             method: type,
             headers: {
-                'Accept': 'application/json',
+                // 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             mode: "cors", // 以CORS的形式跨域
@@ -42,11 +42,11 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 
         try {
             const response = await fetch(url, requestConfig);
-            const responseJson = await response.text();
+            // const responseJson = await response.text();
             /**
              * 这里为 response.json()会报错 不知道是什么情况
              */
-            // const responseJson = await response.json();
+            const responseJson = await response.json();
 
             /**
              * status 不是200 提示错误信息
@@ -57,6 +57,7 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 
             return responseJson
         } catch (error) {
+            console.log(error)
             Message.error(error)
             throw new Error(error)
         }
