@@ -51,12 +51,13 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
             /**
              * status 不是200 提示错误信息
              */
-            if(response.status != 200 ) {
+            if (response.status != 200) {
                 Message.error(responseJson)
             }
 
             return responseJson
         } catch (error) {
+            console.log(error)
             Message.error(error)
             throw new Error(error)
         }

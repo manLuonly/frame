@@ -19,7 +19,6 @@ export default {
     return data;
   },
   async created() {
-
     /**
      * md5试例
      */
