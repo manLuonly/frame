@@ -19,6 +19,7 @@ export default {
     return data;
   },
   async created() {
+    _message().error('sadd');
     /**
      * md5试例
      */
