@@ -4,10 +4,10 @@
     <div class="container">
       <div class="top">
         <div class="header">
-          <a href="/">
+          <!-- <a href="/"> -->
             <img src="~@/assets/img/logo.svg" class="logo" alt="logo">
             <span class="title">LGT 后台管理系统</span>
-          </a>
+          <!-- </a> -->
         </div>
         <div class="desc">
           LGT 是深圳最具影响力的团队
@@ -31,12 +31,6 @@ export default {
   data () {
     return {}
   },
-  mounted () {
-    document.body.classList.add('userLayout')
-  },
-  beforeDestroy () {
-    document.body.classList.remove('userLayout')
-  }
 }
 </script>
 

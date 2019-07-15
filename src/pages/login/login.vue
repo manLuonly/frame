@@ -3,7 +3,7 @@
     <userLayout>
 
       <div class="main">
-        <a-form :form="form" @submit.prevent="handleSubmit" class="user-layout-login">
+        <a-form :form="form" @submit.prevent="_handleSubmit" class="user-layout-login">
           <a-form-item
           >
             <a-input
@@ -11,7 +11,7 @@
               v-decorator="[
                 'user',
                 {rules: [{ required: true, message: '请输入你的账户名' }]}
-            ]"
+              ]"
             >
               <a-icon slot="prefix" type="user" :style="{ color: 'rgba(0,0,0,.25)' }"/>
             </a-input>
@@ -21,9 +21,9 @@
             <a-input
               placeholder="密码"
               v-decorator="[
-              'psd',
-              {rules: [{ required: true, message: '请输入你的密码' }]}
-          ]"
+                  'psd',
+                  {rules: [{ required: true, message: '请输入你的密码' }]}
+              ]"
             >
               <a-icon slot="prefix" type="lock" :style="{ color: 'rgba(0,0,0,.25)' }"/>
             </a-input>
@@ -35,9 +35,9 @@
                 <a-input
                   placeholder="验证码"
                   v-decorator="[
-              'code',
-              {rules: [{ required: true, message: '请输入你的验证码' }]}
-            ]"
+                    'code',
+                    {rules: [{ required: true, message: '请输入你的验证码' }]}
+                  ]"
                 >
                   <a-icon slot="prefix" type="code" :style="{ color: 'rgba(0,0,0,.25)' }"/>
                 </a-input>
@@ -58,9 +58,9 @@
 </template>
 
 <script>
-import { login } from "./service.js";
 import data from "./store.js";
 import methods from "./action.js";
+
 // 包含头部和尾部的 布局组件
 import userLayout from '@/components/userLayout.vue'
 export default {
@@ -68,61 +68,29 @@ export default {
       userLayout
   },
   data() {
-    return {
-      formData: {
-        user: "admin",
-        psd: "123456",
-        code: "1"
-      },
-      buttonIsLoading: false
-    };
+    return data
   },
   beforeCreate() {
     this.form = this.$form.createForm(this);
   },
   created() {
-    window.addEventListener("keyup", this.handleKeyup);
+    window.addEventListener("keyup", this._handleSubmit);
   },
   computed: {
     codeFn() {
       return `http://120.79.160.28/image/checkcode?${Date.now()}`;
-    }
-  },
-  methods: {
-    // 键盘事件
-    handleKeyup(event) {
-      const e = event || window.event || arguments.callee.caller.arguments[0];
-      if (!e) return;
-      if (e.keyCode == "13") this.handleSubmit();
     },
-
     /**
-     * 提交
+     * 防抖登陆
      */
-    handleSubmit(e) {
-      let { buttonIsLoading, form } = this;
-
-      if (buttonIsLoading) return;
-      buttonIsLoading = true;
-
-      form.validateFields(async err => {
-        if (!err) {
-          let loginResponse = await login(form.getFieldsValue());
-          if (loginResponse.status === 0) {
-            // this.$router.replace({path: '/wait'})
-            window.location.href = "/waiting.html";
-          } else {
-            _message().error("别登陆，来打游戏");
-          }
-          buttonIsLoading = false;
-        } else {
-          buttonIsLoading = false;
-        }
-      });
+    _handleSubmit() {
+      return _.debounce(this.handleSubmit, 500)
     }
   },
+  methods,
+   
   destroyed() {
-    window.removeEventListener("keyup", this.handleKeyup);
+    window.removeEventListener("keyup", this._handleSubmit);
   }
 };
 </script>
@@ -145,10 +113,10 @@ export default {
         margin-top: 3px;
       }
       button.login-button {
-        padding: 0 15px;
-        font-size: 16px;
         height: 40px;
         width: 100%;
+        padding: 0 15px;
+        font-size: 16px;
       }
     }
   }
