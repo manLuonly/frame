@@ -89,7 +89,7 @@ module.exports = {
             sass: {
                 //引入全局样式
                 data: `
-               @import "@/style/global.scss";
+               @import "@/style/global.less";
             `
             }
         }

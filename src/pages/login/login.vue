@@ -61,7 +61,6 @@
 import { login } from "./service.js";
 import data from "./store.js";
 import methods from "./action.js";
-import { setTimeout } from "timers";
 // 包含头部和尾部的 布局组件
 import userLayout from '@/components/userLayout.vue'
 export default {
