@@ -7,5 +7,5 @@
  */
 export const login = data => {
     data.psd = _md5(data.psd)
-    return _fetch('login', data, 'POST');
+    return _fetch('logi', data, 'POST');
 }

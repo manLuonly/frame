@@ -35,6 +35,17 @@ let publicFn = (Vue) => {
       });
       return  message
     }
+
+     /**
+     * 抛出异常 方法
+     * @param   ｛String｝
+     * @example _error('xxx')
+     * @return throw new error(xxx)
+     */
+    window._error = function (err){
+      throw new Error(err)
+    }
+    
 }
 
 /**

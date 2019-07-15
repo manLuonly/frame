@@ -18,18 +18,25 @@ export default {
     let { form } = this;
     
     form.validateFields(async err => {
-      this.buttonIsLoading = true;
       if (!err) {
-        let loginResponse = await login(form.getFieldsValue());
+        this.buttonIsLoading = true;
+        /**
+         *   await的函数出错时自动调用 catch回调函数，调用这个才不会阻塞下面进程
+         */
+        let loginResponse = await login(form.getFieldsValue()).catch((err)=>{
+          console.log(err);
+          
+        })
+        console.log(111);
+        
+        this.buttonIsLoading = false;
+
         if (loginResponse.status === 0) {
-          // this.$router.replace({path: '/wait'})
           window.location.href = "/waiting.html";
-        } else {
+        }else {
           _message().error("别登陆，来打游戏");
         }
-        this.buttonIsLoading = false;
-      } else {
-        this.buttonIsLoading = false;
+        
       }
     });
   }
