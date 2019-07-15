@@ -8,7 +8,7 @@ export default {
  handleKeyup(event) {
     const e = event || window.event || arguments.callee.caller.arguments[0];
     if (!e) return;
-    if (e.keyCode == "13") this.handleSubmit();
+    if (e.keyCode == "13") this._handleSubmit();
   },
 
   /**

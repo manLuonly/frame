@@ -74,7 +74,7 @@ export default {
     this.form = this.$form.createForm(this);
   },
   created() {
-    window.addEventListener("keyup", this._handleSubmit);
+    window.addEventListener("keyup", this.handleKeyup);
   },
   computed: {
     codeFn() {
@@ -90,7 +90,7 @@ export default {
   methods,
    
   destroyed() {
-    window.removeEventListener("keyup", this._handleSubmit);
+    window.removeEventListener("keyup", this.handleKeyup);
   }
 };
 </script>
