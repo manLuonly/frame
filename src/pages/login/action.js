@@ -24,7 +24,7 @@ export default {
          *   await的函数出错时自动调用 catch回调函数，调用这个才不会阻塞下面进程
          */
         let loginResponse = await login(form.getFieldsValue()).catch((err)=>{
-          console.log(err);
+          
           
         })
         console.log(111);
@@ -34,7 +34,7 @@ export default {
         if (loginResponse.status === 0) {
           window.location.href = "/waiting.html";
         }else {
-          _message().error("别登陆，来打游戏");
+          _message().error('账号名或密码错误或验证码')
         }
         
       }

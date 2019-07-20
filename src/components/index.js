@@ -24,7 +24,7 @@ let publicFn = (Vue) => {
      * 将消息提示 方法挂在window上
      * @param   duration(默认自动关闭延时，单位秒){number} maxCount(最大显示数, 超过限制时，最早的消息会被自动关闭){number}  top(消息距离顶部的位置){string}
      * @example  _message(op).success(str)  _message(op).error(str)  _message(op).warning(str)
-     * @return 
+     * @return   message(ant-vue的消息方法)
      */
     window._message = (duration, maxCount, top)=>{
       let message  = Vue.prototype.$message

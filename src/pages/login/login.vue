@@ -49,7 +49,7 @@
           </a-form-item>
 
           <a-form-item >
-            <a-button type="primary" size="large" html-type="submit" :loading="buttonIsLoading" class="login-button">登陆</a-button>
+            <a-button :type="buttonIsLoading ? 'default' : 'primary'" size="large" html-type="submit" :loading="buttonIsLoading" class="login-button">登陆</a-button>
           </a-form-item>
         </a-form>
       </div>
